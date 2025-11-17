@@ -11,12 +11,12 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     defaultNextQuestion: 'q2_duration',
     multiple: true,
     options: [
-      { text: "My thoughts and mind", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 } },
-      { text: "My emotions and feelings", scores: { 'emotional-overwhelm': 2, 'anxiety-activation': 1 } },
-      { text: "My relationships", scores: { 'relationship-friction': 2 }, nextQuestion: 'q1a_relationship_type' },
-      { text: "My work or responsibilities", scores: { 'stress-overload': 2, 'focus-break': 1 } },
-      { text: "My sense of purpose or direction", scores: { 'motivation-drop': 2, 'internal-conflict': 1 } },
-      { text: "My ability to focus or concentrate", scores: { 'focus-break': 2, 'stress-overload': 1 } }
+      { text: "My thoughts and mind", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 }, explanations: { 'overthinking-loop': "Indicates the problem is centered in your mental processes, a key sign of an overthinking pattern.", 'internal-conflict': "Suggests a struggle with decisions or contradictory thoughts." } },
+      { text: "My emotions and feelings", scores: { 'emotional-overwhelm': 2, 'anxiety-activation': 1 }, explanations: { 'emotional-overwhelm': "Points to difficulty in processing or managing the intensity of your feelings.", 'anxiety-activation': "Shows that emotional distress, particularly worry or fear, is a primary concern." } },
+      { text: "My relationships", scores: { 'relationship-friction': 2 }, nextQuestion: 'q1a_relationship_type', explanations: { 'relationship-friction': "Directly points to interpersonal challenges as the main source of stress." } },
+      { text: "My work or responsibilities", scores: { 'stress-overload': 2, 'focus-break': 1 }, explanations: { 'stress-overload': "Highlights that external demands and duties are a major source of pressure.", 'focus-break': "Suggests that work-related stress is impacting your ability to concentrate." } },
+      { text: "My sense of purpose or direction", scores: { 'motivation-drop': 2, 'internal-conflict': 1 }, explanations: { 'motivation-drop': "Indicates a loss of internal drive and enthusiasm.", 'internal-conflict': "Points to a disconnect between your actions and your values or goals." } },
+      { text: "My ability to focus or concentrate", scores: { 'focus-break': 2, 'stress-overload': 1 }, explanations: { 'focus-break': "Directly identifies distraction and an inability to maintain attention as the core issue.", 'stress-overload': "Shows that a scattered mind can be a symptom of being overwhelmed." } }
     ]
   },
   'q1a_relationship_type': {
@@ -25,10 +25,10 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     defaultNextQuestion: 'q2_duration', // Merge back to the main flow
     multiple: true,
     options: [
-      { text: "With a romantic partner", scores: { 'relationship-friction': 2 } },
-      { text: "With a family member", scores: { 'relationship-friction': 2 } },
-      { text: "With a friend or colleague", scores: { 'relationship-friction': 2, 'stress-overload': 1 } },
-      { text: "A general feeling of disconnect from others", scores: { 'relationship-friction': 1, 'emotional-overwhelm': 1 } }
+      { text: "With a romantic partner", scores: { 'relationship-friction': 2 }, explanations: { 'relationship-friction': "Pinpoints a key intimate relationship as the source of friction." } },
+      { text: "With a family member", scores: { 'relationship-friction': 2 }, explanations: { 'relationship-friction': "Highlights family dynamics as the central issue." } },
+      { text: "With a friend or colleague", scores: { 'relationship-friction': 2, 'stress-overload': 1 }, explanations: { 'relationship-friction': "Indicates social or professional relationships are strained.", 'stress-overload': "Suggests that workplace or social stress is contributing to the problem." } },
+      { text: "A general feeling of disconnect from others", scores: { 'relationship-friction': 1, 'emotional-overwhelm': 1 }, explanations: { 'relationship-friction': "Points to a broader sense of social isolation.", 'emotional-overwhelm': "Suggests that feeling disconnected may be a symptom of being emotionally flooded." } }
     ]
   },
   'q2_duration': {
@@ -37,10 +37,10 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     defaultNextQuestion: 'q3_trigger',
     options: [
       { text: "Just started recently (days)", scores: {} }, // Neutral
-      { text: "A few weeks", scores: { 'stress-overload': 1 } },
-      { text: "Several months", scores: { 'emotional-overwhelm': 1, 'motivation-drop': 1 } },
-      { text: "It comes and goes", scores: { 'impulse-anger': 1, 'anxiety-activation': 1 } },
-      { text: "It's been ongoing for a long time", scores: { 'internal-conflict': 1, 'relationship-friction': 1 } }
+      { text: "A few weeks", scores: { 'stress-overload': 1 }, explanations: { 'stress-overload': "A shorter duration can indicate an acute buildup of stress." } },
+      { text: "Several months", scores: { 'emotional-overwhelm': 1, 'motivation-drop': 1 }, explanations: { 'emotional-overwhelm': "Longer-term emotional struggles can lead to a feeling of being overwhelmed.", 'motivation-drop': "Motivation tends to wane over extended periods of unresolved stress." } },
+      { text: "It comes and goes", scores: { 'impulse-anger': 1, 'anxiety-activation': 1 }, explanations: { 'impulse-anger': "Suggests a reactive pattern to specific, recurring triggers.", 'anxiety-activation': "Indicates a pattern of anxiety that is triggered intermittently." } },
+      { text: "It's been ongoing for a long time", scores: { 'internal-conflict': 1, 'relationship-friction': 1 }, explanations: { 'internal-conflict': "Chronic indecision or value conflicts are often long-lasting.", 'relationship-friction': "Deep-seated relationship issues tend to be persistent over time." } }
     ]
   },
   'q3_trigger': {
@@ -49,12 +49,12 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     defaultNextQuestion: 'q4_body',
     multiple: true,
     options: [
-      { text: "Pressure or expectations", scores: { 'stress-overload': 2, 'anxiety-activation': 1 } },
-      { text: "Uncertainty or not knowing what to do", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 } },
-      { text: "Conflict or tension with others", scores: { 'relationship-friction': 2, 'impulse-anger': 1 } },
-      { text: "Feeling overwhelmed by too much at once", scores: { 'stress-overload': 2, 'emotional-overwhelm': 2 } },
-      { text: "Feeling stuck or unmotivated", scores: { 'motivation-drop': 2 } },
-      { text: "Losing control of my thoughts", scores: { 'overthinking-loop': 2, 'focus-break': 1 } }
+      { text: "Pressure or expectations", scores: { 'stress-overload': 2, 'anxiety-activation': 1 }, explanations: { 'stress-overload': "This is a classic trigger for feeling overwhelmed by demands.", 'anxiety-activation': "Expectations can fuel 'what if' thinking and fear of failure." } },
+      { text: "Uncertainty or not knowing what to do", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 }, explanations: { 'overthinking-loop': "The mind often goes into overdrive to try and solve for uncertainty.", 'internal-conflict': "Uncertainty can paralyze you when you're torn between choices." } },
+      { text: "Conflict or tension with others", scores: { 'relationship-friction': 2, 'impulse-anger': 1 }, explanations: { 'relationship-friction': "This directly points to interpersonal conflict as the primary trigger.", 'impulse-anger': "Conflict is a common trigger for a defensive, angry response." } },
+      { text: "Feeling overwhelmed by too much at once", scores: { 'stress-overload': 2, 'emotional-overwhelm': 2 }, explanations: { 'stress-overload': "This describes the core feeling of having too many demands.", 'emotional-overwhelm': "When tasks pile up, our emotional capacity can be exceeded, leading to shutdown." } },
+      { text: "Feeling stuck or unmotivated", scores: { 'motivation-drop': 2 }, explanations: { 'motivation-drop': "This identifies a lack of internal drive as the key trigger for inaction." } },
+      { text: "Losing control of my thoughts", scores: { 'overthinking-loop': 2, 'focus-break': 1 }, explanations: { 'overthinking-loop': "This describes the experience of being caught in repetitive, unwanted thoughts.", 'focus-break': "A loss of thought-control is a sign that your ability to direct your focus is breaking down." } }
     ]
   },
   'q4_body': {
@@ -63,11 +63,11 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     defaultNextQuestion: 'q5_frequency',
     multiple: true,
     options: [
-      { text: "Tension (shoulders, jaw, chest)", scores: { 'stress-overload': 2, 'anxiety-activation': 1 } },
-      { text: "Restlessness or fidgeting", scores: { 'anxiety-activation': 2, 'focus-break': 1 } },
-      { text: "Tiredness or heaviness", scores: { 'motivation-drop': 2, 'emotional-overwhelm': 1 } },
-      { text: "Rapid heartbeat or shallow breathing", scores: { 'anxiety-activation': 2, 'impulse-anger': 1 } },
-      { text: "Physical numbness or disconnect", scores: { 'emotional-overwhelm': 2 } }
+      { text: "Tension (shoulders, jaw, chest)", scores: { 'stress-overload': 2, 'anxiety-activation': 1 }, explanations: { 'stress-overload': "Muscle tension is a primary physical symptom of carrying too much stress.", 'anxiety-activation': "Anxiety often manifests as physical tension and guarding." } },
+      { text: "Restlessness or fidgeting", scores: { 'anxiety-activation': 2, 'focus-break': 1 }, explanations: { 'anxiety-activation': "This reflects a nervous system that is activated and looking for an outlet.", 'focus-break': "Physical restlessness makes it difficult for the mind to be still and focus." } },
+      { text: "Tiredness or heaviness", scores: { 'motivation-drop': 2, 'emotional-overwhelm': 1 }, explanations: { 'motivation-drop': "A lack of motivation often feels like a physical lack of energy.", 'emotional-overwhelm': "Processing intense emotions is exhausting, leading to a feeling of heaviness." } },
+      { text: "Rapid heartbeat or shallow breathing", scores: { 'anxiety-activation': 2, 'impulse-anger': 1 }, explanations: { 'anxiety-activation': "This is a classic 'fight-or-flight' response associated with fear.", 'impulse-anger': "Anger is an activating emotion that prepares the body for a confrontation." } },
+      { text: "Physical numbness or disconnect", scores: { 'emotional-overwhelm': 2 }, explanations: { 'emotional-overwhelm': "When feelings are too intense, the body can 'shut down' as a protective measure." } }
     ]
   },
   'q5_frequency': {
@@ -75,11 +75,11 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     text: "How often does this happen?",
     defaultNextQuestion: 'q6_reaction',
     options: [
-      { text: "Constantly—it's always there", scores: { 'overthinking-loop': 2, 'stress-overload': 1 } },
-      { text: "Multiple times a day", scores: { 'anxiety-activation': 2, 'impulse-anger': 1 } },
+      { text: "Constantly—it's always there", scores: { 'overthinking-loop': 2, 'stress-overload': 1 }, explanations: { 'overthinking-loop': "Overthinking patterns tend to be persistent and hard to turn off.", 'stress-overload': "Chronic stress can feel like a constant state of being." } },
+      { text: "Multiple times a day", scores: { 'anxiety-activation': 2, 'impulse-anger': 1 }, explanations: { 'anxiety-activation': "Anxiety can be triggered frequently by thoughts or small events throughout the day.", 'impulse-anger': "High reactivity can lead to multiple flashes of anger daily." } },
       { text: "A few times a week", scores: { } }, // Neutral
-      { text: "When specific situations arise", scores: { 'relationship-friction': 2 } },
-      { text: "Occasionally, but intensely", scores: { 'emotional-overwhelm': 1, 'impulse-anger': 1 } }
+      { text: "When specific situations arise", scores: { 'relationship-friction': 2 }, explanations: { 'relationship-friction': "This suggests the problem is tied to specific interactions or people." } },
+      { text: "Occasionally, but intensely", scores: { 'emotional-overwhelm': 1, 'impulse-anger': 1 }, explanations: { 'emotional-overwhelm': "This points to a pattern of emotions building up and then overflowing.", 'impulse-anger': "Anger can sometimes appear in intense, infrequent bursts." } }
     ]
   },
   'q6_reaction': {
@@ -88,11 +88,11 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     defaultNextQuestion: 'q7_emotion',
     multiple: true,
     options: [
-      { text: "I freeze and don't know what to do", scores: { 'anxiety-activation': 2, 'emotional-overwhelm': 1 } },
-      { text: "I get frustrated or angry quickly", scores: { 'impulse-anger': 2 } },
-      { text: "I shut down emotionally", scores: { 'emotional-overwhelm': 2, 'motivation-drop': 1 } },
-      { text: "I try to push through but feel exhausted", scores: { 'stress-overload': 2 } },
-      { text: "I overthink and analyze endlessly", scores: { 'overthinking-loop': 2 } }
+      { text: "I freeze and don't know what to do", scores: { 'anxiety-activation': 2, 'emotional-overwhelm': 1 }, explanations: { 'anxiety-activation': "Freezing is a common response to fear, indicating an anxiety pattern.", 'emotional-overwhelm': "Paralysis can be a sign that your emotional system is overloaded." } },
+      { text: "I get frustrated or angry quickly", scores: { 'impulse-anger': 2 }, explanations: { 'impulse-anger': "This is the core definition of a reactive, anger-driven pattern." } },
+      { text: "I shut down emotionally", scores: { 'emotional-overwhelm': 2, 'motivation-drop': 1 }, explanations: { 'emotional-overwhelm': "Shutting down is a protective mechanism against feelings that are too intense.", 'motivation-drop': "Emotional shutdown often leads to a loss of motivation and energy." } },
+      { text: "I try to push through but feel exhausted", scores: { 'stress-overload': 2 }, explanations: { 'stress-overload': "This 'powering through' mentality is a hallmark of being overloaded and heading for burnout." } },
+      { text: "I overthink and analyze endlessly", scores: { 'overthinking-loop': 2 }, explanations: { 'overthinking-loop': "This describes the central behavior of getting caught in repetitive mental analysis." } }
     ]
   },
   'q7_emotion': {
@@ -101,11 +101,11 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     defaultNextQuestion: 'q8_need',
     multiple: true,
     options: [
-      { text: "Fear or worry", scores: { 'anxiety-activation': 2 } },
-      { text: "Frustration or irritation", scores: { 'impulse-anger': 2, 'stress-overload': 1 } },
-      { text: "Sadness or emptiness", scores: { 'emotional-overwhelm': 2, 'motivation-drop': 1 } },
-      { text: "Confusion or uncertainty", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 } },
-      { text: "Feeling trapped or stuck", scores: { 'internal-conflict': 2, 'motivation-drop': 1 } }
+      { text: "Fear or worry", scores: { 'anxiety-activation': 2 }, explanations: { 'anxiety-activation': "Fear and worry are the primary emotions in an anxiety pattern." } },
+      { text: "Frustration or irritation", scores: { 'impulse-anger': 2, 'stress-overload': 1 }, explanations: { 'impulse-anger': "These are the key emotions in a reactive anger pattern.", 'stress-overload': "High stress often lowers our tolerance, leading to frequent frustration." } },
+      { text: "Sadness or emptiness", scores: { 'emotional-overwhelm': 2, 'motivation-drop': 1 }, explanations: { 'emotional-overwhelm': "These feelings can surface when we are overwhelmed and depleted.", 'motivation-drop': "Apathy and sadness are closely linked to a loss of motivation." } },
+      { text: "Confusion or uncertainty", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 }, explanations: { 'overthinking-loop': "Endless analysis often leads to more confusion, not less.", 'internal-conflict': "Feeling torn between choices naturally creates a sense of confusion." } },
+      { text: "Feeling trapped or stuck", scores: { 'internal-conflict': 2, 'motivation-drop': 1 }, explanations: { 'internal-conflict': "This is the core feeling of being unable to make a decision.", 'motivation-drop': "Feeling stuck is a major barrier to taking action and feeling motivated." } }
     ]
   },
   'q8_need': {
@@ -113,11 +113,11 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     text: "What do you need most right now?",
     multiple: true,
     options: [
-      { text: "Calm and peace", scores: { 'anxiety-activation': 2, 'stress-overload': 1 } },
-      { text: "Clarity and direction", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 } },
-      { text: "Energy and motivation", scores: { 'motivation-drop': 2 } },
-      { text: "Control over my reactions", scores: { 'impulse-anger': 2, 'emotional-overwhelm': 1 } },
-      { text: "Understanding what's really happening", scores: { 'internal-conflict': 2, 'focus-break': 1 } }
+      { text: "Calm and peace", scores: { 'anxiety-activation': 2, 'stress-overload': 1 }, explanations: { 'anxiety-activation': "A desire for calm points directly to a state of anxiety or fear.", 'stress-overload': "When overloaded, the system craves rest and a peaceful state." } },
+      { text: "Clarity and direction", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 }, explanations: { 'overthinking-loop': "This reflects a desire to break free from the confusion of endless thoughts.", 'internal-conflict': "When you're conflicted, clarity is the primary need to move forward." } },
+      { text: "Energy and motivation", scores: { 'motivation-drop': 2 }, explanations: { 'motivation-drop': "This directly states the core deficit in a motivation-related problem." } },
+      { text: "Control over my reactions", scores: { 'impulse-anger': 2, 'emotional-overwhelm': 1 }, explanations: { 'impulse-anger': "This points to a struggle with reactive, regrettable behaviors.", 'emotional-overwhelm': "Feeling out of control is a key part of being emotionally overwhelmed." } },
+      { text: "Understanding what's really happening", scores: { 'internal-conflict': 2, 'focus-break': 1 }, explanations: { 'internal-conflict': "This shows a need to understand the deeper reasons for feeling stuck.", 'focus-break': "A desire for understanding can arise when you feel your mind is too scattered to make sense of things." } }
     ]
   }
 };
@@ -373,10 +373,10 @@ export const thinkingStyleTestQuestions: QuizQuestion[] = [
         text: 'When making a big decision, what do you prioritize?',
         multiple: true,
         options: [
-            { text: 'The logical pros and cons.', scores: { 'logical': 2 } },
-            { text: 'How it feels in my gut.', scores: { 'emotional': 2 } },
-            { text: 'Getting it done quickly.', scores: { 'fast-reactive': 2 } },
-            { text: 'Weighing logic against my feelings.', scores: { 'balanced': 2 } },
+            { text: 'The logical pros and cons.', scores: { 'logical': 2 }, explanations: { 'logical': "Prioritizing logic shows a preference for objective, data-driven decision making." } },
+            { text: 'How it feels in my gut.', scores: { 'emotional': 2 }, explanations: { 'emotional': "Relying on your gut feeling indicates a decision-making process rooted in intuition and emotion." } },
+            { text: 'Getting it done quickly.', scores: { 'fast-reactive': 2 }, explanations: { 'fast-reactive': "A focus on speed suggests a bias for action and immediate results." } },
+            { text: 'Weighing logic against my feelings.', scores: { 'balanced': 2 }, explanations: { 'balanced': "This demonstrates a holistic approach, integrating both rational and emotional inputs." } },
         ],
     },
     {
@@ -384,10 +384,10 @@ export const thinkingStyleTestQuestions: QuizQuestion[] = [
         text: 'When faced with a new problem, your first instinct is to:',
         multiple: true,
         options: [
-            { text: 'Break it down into smaller steps.', scores: { 'logical': 2 } },
-            { text: 'Consider how it will affect people.', scores: { 'emotional': 2 } },
-            { text: 'Try the first solution that comes to mind.', scores: { 'fast-reactive': 2 } },
-            { text: 'Pause and consider the big picture.', scores: { 'balanced': 2 } },
+            { text: 'Break it down into smaller steps.', scores: { 'logical': 2 }, explanations: { 'logical': "This systematic approach is a hallmark of logical, analytical thinking." } },
+            { text: 'Consider how it will affect people.', scores: { 'emotional': 2 }, explanations: { 'emotional': "This points to a thinking style centered on empathy and interpersonal impact." } },
+            { text: 'Try the first solution that comes to mind.', scores: { 'fast-reactive': 2 }, explanations: { 'fast-reactive': "This highlights an impulsive, action-oriented approach to problem-solving." } },
+            { text: 'Pause and consider the big picture.', scores: { 'balanced': 2 }, explanations: { 'balanced': "Taking a moment to see the broader context is characteristic of a thoughtful, balanced thinker." } },
         ],
     },
 ];
@@ -437,10 +437,10 @@ export const emotionalPatternTestQuestions: QuizQuestion[] = [
         text: 'When you receive unexpected criticism, how do you react internally?',
         multiple: true,
         options: [
-            { text: 'I feel it deeply and it can affect my mood for a while.', scores: { 'sensitive': 2 } },
-            { text: 'I get defensive or angry almost immediately.', scores: { 'impulsive': 2 } },
-            { text: 'I try to understand the feedback without a strong emotional reaction.', scores: { 'calm': 2 } },
-            { text: 'I brush it off and try not to think about it.', scores: { 'avoidant': 2 } },
+            { text: 'I feel it deeply and it can affect my mood for a while.', scores: { 'sensitive': 2 }, explanations: { 'sensitive': "A deep, lasting emotional impact from criticism is a key trait of a sensitive pattern." } },
+            { text: 'I get defensive or angry almost immediately.', scores: { 'impulsive': 2 }, explanations: { 'impulsive': "A rapid defensive or angry reaction points to an impulsive emotional style." } },
+            { text: 'I try to understand the feedback without a strong emotional reaction.', scores: { 'calm': 2 }, explanations: { 'calm': "Maintaining emotional equilibrium and objectivity under criticism is a hallmark of a calm pattern." } },
+            { text: 'I brush it off and try not to think about it.', scores: { 'avoidant': 2 }, explanations: { 'avoidant': "The instinct to dismiss or ignore criticism suggests a pattern of avoiding difficult emotions." } },
         ],
     },
 ];
@@ -490,10 +490,10 @@ export const behaviorTestQuestions: QuizQuestion[] = [
         text: 'How do you typically approach a weekend with no plans?',
         multiple: true,
         options: [
-            { text: 'I make a list of things I want to accomplish.', scores: { 'planner': 2 } },
-            { text: 'I wait to see what I feel like doing in the moment.', scores: { 'spontaneous': 2 } },
-            { text: 'I think about all the possibilities and sometimes do nothing.', scores: { 'overthinker': 2 } },
-            { text: 'I find a project or activity to dive into immediately.', scores: { 'action-taker': 2 } },
+            { text: 'I make a list of things I want to accomplish.', scores: { 'planner': 2 }, explanations: { 'planner': "Creating a list for free time is a classic behavior of a Planner who values structure." } },
+            { text: 'I wait to see what I feel like doing in the moment.', scores: { 'spontaneous': 2 }, explanations: { 'spontaneous': "This 'go-with-the-flow' attitude is the essence of a Spontaneous behavioral style." } },
+            { text: 'I think about all the possibilities and sometimes do nothing.', scores: { 'overthinker': 2 }, explanations: { 'overthinker': "Getting caught in analysis, even for leisure, points to an Overthinker's nature." } },
+            { text: 'I find a project or activity to dive into immediately.', scores: { 'action-taker': 2 }, explanations: { 'action-taker': "The drive to be active and engaged, even without a plan, is typical of an Action-Taker." } },
         ],
     },
 ];

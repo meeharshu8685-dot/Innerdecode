@@ -58,9 +58,11 @@ const GenericTestResultPage: React.FC = () => {
           options: []
         };
       }
-      acc[questionId].options.push(questionsMap[questionId].options[answer.optionIndex].text);
+      const option = questionsMap[questionId].options[answer.optionIndex];
+      const explanation = option.explanations?.[resultId] ?? '';
+      acc[questionId].options.push({ text: option.text, explanation });
       return acc;
-    }, {} as { [key: string]: { questionText: string; options: string[] } });
+    }, {} as { [key: string]: { questionText: string; options: { text: string; explanation: string }[] } });
   };
   
   const contributingAnswersMap = getContributingAnswers();
@@ -94,9 +96,19 @@ const GenericTestResultPage: React.FC = () => {
               {Object.values(contributingAnswersMap).map((item, index) => (
                 <div key={index} className="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
                   <p className="font-semibold text-text-primary dark:text-slate-200">When asked: "{item.questionText}"</p>
-                  <p className="mt-1">You selected:</p>
-                  <ul className="list-disc list-inside ml-4">
-                    {item.options.map((opt, i) => <li key={i}>{opt}</li>)}
+                  <ul className="mt-2 space-y-3">
+                    {item.options.map((opt, i) => (
+                      <li key={i} className="p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg">
+                        <p className="text-text-primary dark:text-slate-300">You chose: <span className="font-semibold">"{opt.text}"</span></p>
+                        {opt.explanation && (
+                          <div className="mt-2 pt-2 border-t border-slate-200 dark:border-slate-600">
+                            <p className="text-sm text-sky-800 dark:text-sky-300">
+                              <span className="font-semibold">Clarity:</span> {opt.explanation}
+                            </p>
+                          </div>
+                        )}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               ))}

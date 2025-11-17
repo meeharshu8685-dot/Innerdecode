@@ -7,6 +7,7 @@ export interface Answer {
 export interface QuizOption {
   text: string;
   scores: { [key: string]: number };
+  explanations?: { [key: string]: string };
   nextQuestion?: string; // ID of the next question if this option is chosen
 }
 
