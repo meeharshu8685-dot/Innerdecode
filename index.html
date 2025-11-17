@@ -7,10 +7,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Theme script to prevent flash
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark')
-    } else {
+    // Default to dark theme
+    if (localStorage.theme === 'light') {
       document.documentElement.classList.remove('dark')
+    } else {
+      document.documentElement.classList.add('dark')
     }
 
     tailwind.config = {
@@ -18,13 +19,14 @@
       theme: {
         extend: {
           colors: {
-            'calm-blue': '#A9C9FF',
-            'calm-blue-light': '#E2ECFF',
-            'calm-green': '#D4E8D4',
-            'calm-lavender': '#E6E6FA',
-            'warm-neutral': '#F5F5DC',
-            'text-primary': '#334155',
-            'text-secondary': '#64748b',
+            'calm-blue': '#60A5FA', // blue-400
+            'calm-blue-dark': '#3B82F6', // blue-500
+            'calm-blue-light': '#EFF6FF', // blue-50
+            'calm-green': '#A7F3D0', // emerald-200
+            'calm-green-dark': '#34D399', // emerald-400
+            'calm-lavender': '#F5F3FF', // violet-100
+            'text-primary': '#1E293B', // slate-800
+            'text-secondary': '#64748B', // slate-500
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
@@ -33,6 +35,40 @@
       },
     }
   </script>
+  <style>
+    @media print {
+      body {
+        background: white !important;
+      }
+      header, footer, .print-hide {
+        display: none !important;
+      }
+      main {
+        padding: 0 !important;
+        margin: 1in !important;
+      }
+      .dark, .dark body {
+        background: white !important;
+        color: black !important;
+      }
+      h1, h2, h3, p, li, span {
+        color: black !important;
+      }
+      .print-container {
+        box-shadow: none !important;
+        padding: 0 !important;
+        border: none !important;
+      }
+      .accordion-content {
+        display: block !important;
+        visibility: visible !important;
+        padding: 1rem 0 !important;
+      }
+      .accordion-toggle-icon {
+        display: none !important;
+      }
+    }
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -47,7 +83,7 @@
 }
 </script>
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 font-sans">
+<body class="bg-slate-50 dark:bg-black font-sans">
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

@@ -7,11 +7,11 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <header className="bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <NavLink to="/" className="text-2xl font-bold text-slate-800 dark:text-slate-200">
+            <NavLink to="/" className="text-2xl font-bold text-text-primary dark:text-gray-200">
               Innerdecode
             </NavLink>
           </div>
@@ -24,8 +24,8 @@ const Header: React.FC = () => {
                   className={({ isActive }) =>
                     `px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                       isActive
-                        ? 'bg-calm-blue-light text-slate-900 dark:text-white dark:bg-slate-700'
-                        : 'text-text-secondary dark:text-slate-300 hover:bg-slate-100 hover:text-slate-800 dark:hover:bg-slate-700 dark:hover:text-white'
+                        ? 'bg-calm-blue-light text-text-primary dark:text-white dark:bg-zinc-800'
+                        : 'text-text-secondary dark:text-gray-300 hover:bg-slate-100 hover:text-text-primary dark:hover:bg-zinc-800 dark:hover:text-white'
                     }`
                   }
                 >
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="bg-slate-100 dark:bg-slate-800 inline-flex items-center justify-center p-2 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-100 focus:ring-calm-blue ml-2"
+              className="bg-slate-100 dark:bg-zinc-900 inline-flex items-center justify-center p-2 rounded-md text-slate-500 dark:text-gray-400 hover:text-slate-700 hover:bg-slate-200 dark:hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-100 focus:ring-calm-blue ml-2"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -69,8 +69,8 @@ const Header: React.FC = () => {
                 className={({ isActive }) =>
                   `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                     isActive
-                      ? 'bg-calm-blue-light text-slate-900 dark:text-white dark:bg-slate-700'
-                      : 'text-text-secondary dark:text-slate-300 hover:bg-slate-100 hover:text-slate-800 dark:hover:bg-slate-700 dark:hover:text-white'
+                      ? 'bg-calm-blue-light text-text-primary dark:text-white dark:bg-zinc-800'
+                      : 'text-text-secondary dark:text-gray-300 hover:bg-slate-100 hover:text-text-primary dark:hover:bg-zinc-800 dark:hover:text-white'
                   }`
                 }
               >

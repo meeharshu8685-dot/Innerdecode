@@ -110,17 +110,17 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
   const isLastQuestion = hasAnsweredCurrent && !nextQuestionId;
 
   return (
-    <div className="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-lg">
+    <div className="max-w-2xl mx-auto bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-2xl shadow-lg">
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-2 text-sm text-text-secondary dark:text-slate-400">
+        <div className="flex justify-between items-center mb-2 text-sm text-text-secondary dark:text-gray-400">
           <span>Question {questionHistory.length + 1}</span>
         </div>
       </div>
       <div className="text-center">
         <div className="mb-8 min-h-[4.5rem] flex flex-col justify-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-text-primary dark:text-slate-200">{currentQuestion.text}</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-text-primary dark:text-gray-200">{currentQuestion.text}</h2>
             {currentQuestion.multiple && (
-                <p className="text-md text-text-secondary dark:text-slate-400 mt-2">(Select all that apply)</p>
+                <p className="text-md text-text-secondary dark:text-gray-400 mt-2">(Select all that apply)</p>
             )}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -132,11 +132,11 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
                     onClick={() => handleAnswer(index)}
                     className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-calm-blue focus:ring-offset-2 ${
                         isSelected 
-                        ? 'border-calm-blue bg-calm-blue-light dark:bg-slate-700' 
-                        : 'border-slate-200 dark:border-slate-600 hover:border-calm-blue hover:bg-calm-blue-light/50 dark:hover:bg-slate-700/50'
+                        ? 'border-calm-blue bg-calm-blue-light dark:bg-zinc-800' 
+                        : 'border-slate-200 dark:border-zinc-700 hover:border-calm-blue hover:bg-calm-blue-light/50 dark:hover:bg-zinc-800/50'
                     }`}
                 >
-                    <span className="text-lg font-medium text-text-primary dark:text-slate-200">{option.text}</span>
+                    <span className="text-lg font-medium text-text-primary dark:text-gray-200">{option.text}</span>
                 </button>
              );
           })}
@@ -147,7 +147,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
         <button
           onClick={handleBack}
           disabled={questionHistory.length === 0}
-          className="px-6 py-2 text-slate-700 dark:text-slate-300 font-semibold rounded-full shadow-sm hover:shadow-md disabled:shadow-none bg-white dark:bg-slate-700 dark:hover:bg-slate-600 disabled:bg-slate-100 disabled:text-slate-400 dark:disabled:bg-slate-800 dark:disabled:text-slate-500 disabled:cursor-not-allowed transition-all border border-slate-200 dark:border-slate-600"
+          className="px-6 py-2 text-slate-700 dark:text-gray-300 font-semibold rounded-full shadow-sm hover:shadow-md disabled:shadow-none bg-white dark:bg-zinc-800 dark:hover:bg-zinc-700 disabled:bg-slate-100 disabled:text-slate-400 dark:disabled:bg-zinc-900 dark:disabled:text-gray-500 disabled:cursor-not-allowed transition-all border border-slate-200 dark:border-zinc-700"
         >
           Back
         </button>
@@ -156,7 +156,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
           <button
             onClick={handleNext}
             disabled={!hasAnsweredCurrent}
-            className="px-8 py-3 bg-gradient-to-r from-calm-blue to-blue-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all disabled:from-slate-300 disabled:to-slate-400 disabled:shadow-none disabled:transform-none disabled:cursor-not-allowed"
+            className="px-8 py-3 bg-gradient-to-r from-calm-blue to-calm-blue-dark text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all disabled:from-slate-300 disabled:to-slate-400 disabled:shadow-none disabled:transform-none disabled:cursor-not-allowed"
           >
             Next
           </button>
@@ -166,7 +166,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
           <button
             onClick={handleFinish}
             disabled={!hasAnsweredCurrent}
-            className="px-8 py-3 bg-gradient-to-r from-calm-green to-green-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all disabled:from-slate-300 disabled:to-slate-400 disabled:shadow-none disabled:transform-none disabled:cursor-not-allowed"
+            className="px-8 py-3 bg-gradient-to-r from-calm-green to-calm-green-dark text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all disabled:from-slate-300 disabled:to-slate-400 disabled:shadow-none disabled:transform-none disabled:cursor-not-allowed"
           >
             Finish Test
           </button>

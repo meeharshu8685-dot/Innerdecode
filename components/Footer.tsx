@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700">
+    <footer className="bg-white dark:bg-zinc-900 border-t border-slate-200 dark:border-zinc-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center text-text-secondary dark:text-slate-400">
+        <div className="text-center text-text-secondary dark:text-gray-400">
           <p className="mb-4 text-sm">
             This website is an informational tool for self-understanding and is not a medical service. It does not provide diagnosis, therapy, or medical advice.
           </p>

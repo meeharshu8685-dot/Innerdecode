@@ -69,40 +69,40 @@ const GenericTestResultPage: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="text-center p-8 bg-gradient-to-br from-calm-blue-light to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl shadow-lg mb-12">
-        <p className="text-lg text-text-secondary dark:text-slate-400 mb-2">Your Resulting {title}:</p>
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-200 mb-4">{result.name}</h1>
-        <p className="text-lg text-text-secondary dark:text-slate-400 max-w-2xl mx-auto">{result.description}</p>
+      <div className="text-center p-8 bg-gradient-to-br from-calm-blue-light to-white dark:from-zinc-900 dark:to-zinc-800 rounded-2xl shadow-lg mb-12">
+        <p className="text-lg text-text-secondary dark:text-gray-400 mb-2">Your Resulting {title}:</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-text-primary dark:text-gray-200 mb-4">{result.name}</h1>
+        <p className="text-lg text-text-secondary dark:text-gray-400 max-w-2xl mx-auto">{result.description}</p>
       </div>
 
       <div className="space-y-8">
-        <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-md">
-            <h2 className="text-2xl font-semibold text-text-primary dark:text-slate-200 mb-4">Strengths</h2>
-            <ul className="list-disc list-inside space-y-2 text-text-secondary dark:text-slate-300 text-lg">
+        <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md">
+            <h2 className="text-2xl font-semibold text-text-primary dark:text-gray-200 mb-4">Strengths</h2>
+            <ul className="list-disc list-inside space-y-2 text-text-secondary dark:text-gray-300 text-lg">
                 {result.strengths.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
         </div>
-        <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-md">
-            <h2 className="text-2xl font-semibold text-text-primary dark:text-slate-200 mb-4">Challenges & Blind Spots</h2>
-            <ul className="list-disc list-inside space-y-2 text-text-secondary dark:text-slate-300 text-lg">
+        <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md">
+            <h2 className="text-2xl font-semibold text-text-primary dark:text-gray-200 mb-4">Challenges & Blind Spots</h2>
+            <ul className="list-disc list-inside space-y-2 text-text-secondary dark:text-gray-300 text-lg">
                 {result.challenges.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
         </div>
         
         {answers && Object.keys(contributingAnswersMap).length > 0 && (
           <Accordion title="How We Found This Result">
-            <div className="space-y-4 text-text-secondary dark:text-slate-300">
+            <div className="space-y-4 text-text-secondary dark:text-gray-300">
               <p>Your result is based on answers that point towards the <strong>{result.name}</strong> style. Here are the key choices you made:</p>
               {Object.values(contributingAnswersMap).map((item, index) => (
-                <div key={index} className="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
-                  <p className="font-semibold text-text-primary dark:text-slate-200">When asked: "{item.questionText}"</p>
+                <div key={index} className="p-3 bg-slate-50 dark:bg-zinc-800/50 rounded-lg">
+                  <p className="font-semibold text-text-primary dark:text-gray-200">When asked: "{item.questionText}"</p>
                   <ul className="mt-2 space-y-3">
                     {item.options.map((opt, i) => (
-                      <li key={i} className="p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg">
-                        <p className="text-text-primary dark:text-slate-300">You chose: <span className="font-semibold">"{opt.text}"</span></p>
+                      <li key={i} className="p-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 rounded-lg">
+                        <p className="text-text-primary dark:text-gray-300">You chose: <span className="font-semibold">"{opt.text}"</span></p>
                         {opt.explanation && (
-                          <div className="mt-2 pt-2 border-t border-slate-200 dark:border-slate-600">
-                            <p className="text-sm text-sky-800 dark:text-sky-300">
+                          <div className="mt-2 pt-2 border-t border-slate-200 dark:border-zinc-700">
+                            <p className="text-sm text-blue-800 dark:text-calm-blue">
                               <span className="font-semibold">Clarity:</span> {opt.explanation}
                             </p>
                           </div>
@@ -116,15 +116,15 @@ const GenericTestResultPage: React.FC = () => {
           </Accordion>
         )}
 
-        <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-md">
-            <h2 className="text-2xl font-semibold text-text-primary dark:text-slate-200 mb-4">Tips for Balance & Growth</h2>
-            <ul className="list-disc list-inside space-y-2 text-text-secondary dark:text-slate-300 text-lg">
+        <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-md">
+            <h2 className="text-2xl font-semibold text-text-primary dark:text-gray-200 mb-4">Tips for Balance & Growth</h2>
+            <ul className="list-disc list-inside space-y-2 text-text-secondary dark:text-gray-300 text-lg">
                 {result.tips.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
         </div>
       </div>
        <div className="text-center mt-12">
-            <Link to="/" className="px-6 py-3 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all border border-slate-200 dark:border-slate-600">
+            <Link to="/" className="px-6 py-3 bg-white dark:bg-zinc-800 text-slate-700 dark:text-gray-200 font-semibold rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all border border-slate-200 dark:border-zinc-700">
                 &larr; Back to Home
             </Link>
         </div>

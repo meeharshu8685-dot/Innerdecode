@@ -28,8 +28,8 @@ const BehaviorTestPage: React.FC = () => {
   return (
     <div>
         <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-slate-800 dark:text-slate-200 mb-4">Behavior & Nature Test</h1>
-            <p className="max-w-2xl mx-auto text-lg text-text-secondary dark:text-slate-400">How do you naturally approach tasks, challenges, and life in general? This test reveals your inherent style of action and interaction with the world.</p>
+            <h1 className="text-4xl font-bold text-slate-800 dark:text-gray-200 mb-4">Behavior & Nature Test</h1>
+            <p className="max-w-2xl mx-auto text-lg text-text-secondary dark:text-gray-400">How do you naturally approach tasks, challenges, and life in general? This test reveals your inherent style of action and interaction with the world.</p>
         </div>
         {/* FIX: Pass the converted questions map and the required startQuestionId prop. */}
         <Quiz
