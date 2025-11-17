@@ -9,7 +9,7 @@ interface QuizProps {
 
 const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) => {
   const [currentQuestionId, setCurrentQuestionId] = useState(startQuestionId);
-  const [answers, setAnswers] = useState<{ [questionId: string]: number }>({});
+  const [answers, setAnswers] = useState<{ [questionId: string]: number[] }>({});
   const [questionHistory, setQuestionHistory] = useState<string[]>([]);
 
   useEffect(() => {
@@ -20,10 +20,25 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
   }, [startQuestionId, questions]);
 
   const handleAnswer = (optionIndex: number) => {
-    setAnswers(prev => ({
-      ...prev,
-      [currentQuestionId]: optionIndex
-    }));
+    const currentQuestion = questions[currentQuestionId];
+    const currentSelected = answers[currentQuestionId] || [];
+    
+    if (currentQuestion.multiple) {
+      // Toggle selection for multiple choice questions
+      const newAnswers = currentSelected.includes(optionIndex)
+        ? currentSelected.filter(i => i !== optionIndex)
+        : [...currentSelected, optionIndex];
+      setAnswers(prev => ({
+        ...prev,
+        [currentQuestionId]: newAnswers,
+      }));
+    } else {
+      // Replace selection for single choice questions
+      setAnswers(prev => ({
+        ...prev,
+        [currentQuestionId]: [optionIndex],
+      }));
+    }
   };
   
   const handleBack = () => {
@@ -36,11 +51,18 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
 
   const handleNext = () => {
     const currentQuestion = questions[currentQuestionId];
-    const selectedOptionIndex = answers[currentQuestionId];
-    if (selectedOptionIndex === undefined) return;
+    const currentAnswers = answers[currentQuestionId] || [];
+    if (currentAnswers.length === 0) return;
     
-    const selectedOption = currentQuestion.options[selectedOptionIndex];
-    const nextId = selectedOption.nextQuestion || currentQuestion.defaultNextQuestion;
+    let nextId: string | undefined;
+
+    if (currentQuestion.multiple) {
+        nextId = currentQuestion.defaultNextQuestion;
+    } else {
+        const selectedOptionIndex = currentAnswers[0];
+        const selectedOption = currentQuestion.options[selectedOptionIndex];
+        nextId = selectedOption.nextQuestion || currentQuestion.defaultNextQuestion;
+    }
 
     if (nextId && questions[nextId]) {
       setQuestionHistory(prev => [...prev, currentQuestionId]);
@@ -49,23 +71,41 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
   };
 
   const handleFinish = () => {
-    const finalAnswers: Answer[] = Object.entries(answers).map(([questionId, optionIndex]) => ({
-        questionId,
-        optionIndex
-    }));
+    // FIX: Add a type guard to ensure optionIndices is an array. This resolves an
+    // error where TypeScript could not infer the type of `optionIndices` and
+    // treated it as `unknown`, preventing the use of the `.map` method.
+    const finalAnswers: Answer[] = Object.entries(answers).flatMap(([questionId, optionIndices]) => {
+      if (Array.isArray(optionIndices)) {
+        return optionIndices.map(optionIndex => ({
+          questionId,
+          optionIndex,
+        }));
+      }
+      return [];
+    });
     onComplete(finalAnswers);
   };
 
   const currentQuestion = questions[currentQuestionId];
-  const hasAnsweredCurrent = answers[currentQuestionId] !== undefined;
-
-  const selectedOption = hasAnsweredCurrent ? currentQuestion.options[answers[currentQuestionId]] : null;
-  const nextQuestionId = selectedOption?.nextQuestion || currentQuestion.defaultNextQuestion;
-  const isLastQuestion = hasAnsweredCurrent && !nextQuestionId;
-
+  
   if (!currentQuestion) {
     return <div>Loading question...</div>;
   }
+  
+  const currentAnswers = answers[currentQuestionId] || [];
+  const hasAnsweredCurrent = currentAnswers.length > 0;
+
+  let nextQuestionId: string | undefined;
+  if (hasAnsweredCurrent) {
+      if (currentQuestion.multiple) {
+          nextQuestionId = currentQuestion.defaultNextQuestion;
+      } else {
+          const selectedOptionIndex = currentAnswers[0];
+          const selectedOption = currentQuestion.options[selectedOptionIndex];
+          nextQuestionId = selectedOption?.nextQuestion || currentQuestion.defaultNextQuestion;
+      }
+  }
+  const isLastQuestion = hasAnsweredCurrent && !nextQuestionId;
 
   return (
     <div className="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-lg">
@@ -75,10 +115,15 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
         </div>
       </div>
       <div className="text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-text-primary dark:text-slate-200 mb-8">{currentQuestion.text}</h2>
+        <div className="mb-8 min-h-[4.5rem] flex flex-col justify-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-text-primary dark:text-slate-200">{currentQuestion.text}</h2>
+            {currentQuestion.multiple && (
+                <p className="text-md text-text-secondary dark:text-slate-400 mt-2">(Select all that apply)</p>
+            )}
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {currentQuestion.options.map((option, index) => {
-             const isSelected = answers[currentQuestionId] === index;
+             const isSelected = currentAnswers.includes(index);
              return (
                 <button
                     key={index}

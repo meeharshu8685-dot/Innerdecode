@@ -58,6 +58,7 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     id: 'q4_body',
     text: "How does your body react when this happens?",
     defaultNextQuestion: 'q5_frequency',
+    multiple: true,
     options: [
       { text: "Tension (shoulders, jaw, chest)", scores: { 'stress-overload': 2, 'anxiety-activation': 1 } },
       { text: "Restlessness or fidgeting", scores: { 'anxiety-activation': 2, 'focus-break': 1 } },

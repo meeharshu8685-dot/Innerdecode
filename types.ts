@@ -15,6 +15,7 @@ export interface QuizQuestion {
   text: string;
   options: QuizOption[];
   defaultNextQuestion?: string; // Default next question ID if no option specifies one
+  multiple?: boolean;
 }
 
 export interface Pattern {
