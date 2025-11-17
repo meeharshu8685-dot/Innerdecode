@@ -9,6 +9,7 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     id: 'q1_area',
     text: "What area of your life is troubling you most right now?",
     defaultNextQuestion: 'q2_duration',
+    multiple: true,
     options: [
       { text: "My thoughts and mind", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 } },
       { text: "My emotions and feelings", scores: { 'emotional-overwhelm': 2, 'anxiety-activation': 1 } },
@@ -22,6 +23,7 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     id: 'q1a_relationship_type',
     text: "What best describes this relationship friction?",
     defaultNextQuestion: 'q2_duration', // Merge back to the main flow
+    multiple: true,
     options: [
       { text: "With a romantic partner", scores: { 'relationship-friction': 2 } },
       { text: "With a family member", scores: { 'relationship-friction': 2 } },
@@ -45,6 +47,7 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     id: 'q3_trigger',
     text: "What triggers it the most?",
     defaultNextQuestion: 'q4_body',
+    multiple: true,
     options: [
       { text: "Pressure or expectations", scores: { 'stress-overload': 2, 'anxiety-activation': 1 } },
       { text: "Uncertainty or not knowing what to do", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 } },
@@ -83,6 +86,7 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     id: 'q6_reaction',
     text: "What's your typical reaction style when this problem appears?",
     defaultNextQuestion: 'q7_emotion',
+    multiple: true,
     options: [
       { text: "I freeze and don't know what to do", scores: { 'anxiety-activation': 2, 'emotional-overwhelm': 1 } },
       { text: "I get frustrated or angry quickly", scores: { 'impulse-anger': 2 } },
@@ -95,6 +99,7 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
     id: 'q7_emotion',
     text: "What emotion comes up most often?",
     defaultNextQuestion: 'q8_need',
+    multiple: true,
     options: [
       { text: "Fear or worry", scores: { 'anxiety-activation': 2 } },
       { text: "Frustration or irritation", scores: { 'impulse-anger': 2, 'stress-overload': 1 } },
@@ -106,6 +111,7 @@ export const problemTestQuestionsMap: { [id: string]: QuizQuestion } = {
   'q8_need': {
     id: 'q8_need',
     text: "What do you need most right now?",
+    multiple: true,
     options: [
       { text: "Calm and peace", scores: { 'anxiety-activation': 2, 'stress-overload': 1 } },
       { text: "Clarity and direction", scores: { 'overthinking-loop': 2, 'internal-conflict': 1 } },
@@ -365,6 +371,7 @@ export const thinkingStyleTestQuestions: QuizQuestion[] = [
     {
         id: 'tsq1',
         text: 'When making a big decision, what do you prioritize?',
+        multiple: true,
         options: [
             { text: 'The logical pros and cons.', scores: { 'logical': 2 } },
             { text: 'How it feels in my gut.', scores: { 'emotional': 2 } },
@@ -375,6 +382,7 @@ export const thinkingStyleTestQuestions: QuizQuestion[] = [
     {
         id: 'tsq2',
         text: 'When faced with a new problem, your first instinct is to:',
+        multiple: true,
         options: [
             { text: 'Break it down into smaller steps.', scores: { 'logical': 2 } },
             { text: 'Consider how it will affect people.', scores: { 'emotional': 2 } },
@@ -427,6 +435,7 @@ export const emotionalPatternTestQuestions: QuizQuestion[] = [
     {
         id: 'epq1',
         text: 'When you receive unexpected criticism, how do you react internally?',
+        multiple: true,
         options: [
             { text: 'I feel it deeply and it can affect my mood for a while.', scores: { 'sensitive': 2 } },
             { text: 'I get defensive or angry almost immediately.', scores: { 'impulsive': 2 } },
@@ -479,6 +488,7 @@ export const behaviorTestQuestions: QuizQuestion[] = [
     {
         id: 'btq1',
         text: 'How do you typically approach a weekend with no plans?',
+        multiple: true,
         options: [
             { text: 'I make a list of things I want to accomplish.', scores: { 'planner': 2 } },
             { text: 'I wait to see what I feel like doing in the moment.', scores: { 'spontaneous': 2 } },
@@ -585,36 +595,14 @@ export const solutionsData: Solution[] = [
         ]
     },
     {
-        id: 'focus-rebuild-system',
-        name: 'Focus Rebuild System',
-        shortDescription: 'A step-by-step guide to sharpening your concentration and minimizing distractions in a busy world.',
+        id: 'focus-enhancer-kit',
+        name: 'Focus Enhancer Kit',
+        shortDescription: 'Tools to sharpen your concentration, minimize distractions, and enter a state of flow.',
         sections: [
-            { title: 'What Causes This Problem?', content: ["Our brains are being rewired for distraction by constant notifications and information overload. A lack of focus is often a symptom of a tired, overstimulated mind."] },
-            { title: 'Immediate Action (Single-Tabling)', content: ["Close every single browser tab, application, and window that is not essential for the ONE task you are working on right now. Create a visual field of focus."] },
-            { title: 'How to Apply This Solution', content: ["Use the Pomodoro Technique: Work with intense focus for 25 minutes, then take a 5-minute break away from your screen. This trains your brain to focus in short bursts.", "Create a 'distraction list.' When a distracting thought pops up, write it down to deal with later, then immediately return to your task."] },
-            { title: 'What to Avoid', content: ["Avoid having your phone within arm's reach while working. The mere presence of it can reduce cognitive capacity. Avoid starting your day with reactive tasks like checking email or social media."] }
-        ]
-    },
-    {
-        id: 'confidence-activation-steps',
-        name: 'Confidence Activation Steps',
-        shortDescription: 'Build self-trust and take action even when you feel uncertain with these practical confidence boosters.',
-        sections: [
-            { title: 'What Causes This Problem?', content: ["A lack of confidence often comes from a focus on perceived weaknesses, fear of failure, or a habit of negative self-talk. Confidence isn't a feeling you wait for; it's a skill you build through action."] },
-            { title: 'Immediate Action (Power Pose)', content: ["Stand up tall, pull your shoulders back, put your hands on your hips, and hold the pose for 1-2 minutes. Your body language can directly influence your mindset and feelings of confidence."] },
-            { title: 'How to Apply This Solution', content: ["Keep a 'small wins' journal. At the end of each day, write down one thing you accomplished, no matter how minor. This trains your brain to look for evidence of your capability.", "Take one small, low-risk action towards a goal. The act of moving forward, even slightly, builds momentum and confidence."] },
-            { title: 'What to Avoid', content: ["Avoid comparing your journey to others'. Avoid waiting until you 'feel' confident to start; action must come first."] }
-        ]
-    },
-    {
-        id: 'motivation-ignition-principles',
-        name: 'Motivation Ignition Principles',
-        shortDescription: "Rekindle your inner drive and overcome procrastination when you're feeling stuck or uninspired.",
-        sections: [
-            { title: 'What Causes This Problem?', content: ["Motivation wanes when we lose connection to our 'why,' when the task feels too large, or when we are physically or mentally exhausted. It's a signal to reconnect with purpose or to rest."] },
-            { title: "Immediate Action (The 5-Minute Rule)", content: ["Commit to doing the task you're avoiding for just 5 minutes. Anyone can do something for 5 minutes. Often, the inertia of starting is the biggest hurdle. Give yourself full permission to stop after 5 minutes."] },
-            { title: 'How to Apply This Solution', content: ["Break down your overwhelming task into the smallest possible first step. What is the absolute tiniest action you can take to begin?", "Connect the task to a value you hold. How does doing this align with the person you want to be or the goals you want to achieve?"] },
-            { title: 'What to Avoid', content: ["Avoid waiting for inspiration to strike. Motivation follows action, not the other way around. Avoid an all-or-nothing mindset; small progress is still progress."] }
+            { title: 'What Causes This Problem?', content: ["A loss of focus is often a result of overstimulation, too much screen time, lack of sleep, or mental clutter. Your brain's 'executive function' becomes too tired to maintain attention."] },
+            { title: "Immediate Action (The 'One Point' Meditation)", content: ["Find a single, small object in front of you (a dot on the wall, a pen). Stare at it gently for 60 seconds. Your only job is to bring your attention back to it every time your mind wanders."] },
+            { title: 'How to Apply This Solution', content: ["Use the Pomodoro Technique: work with intense focus for 25 minutes, then take a 5-minute break. This trains your brain to concentrate in short bursts.", "Before starting a task, set a single, clear intention. For example, 'For the next 45 minutes, I will only work on writing this report.'"] },
+            { title: 'What to Avoid', content: ["Avoid multitasking at all costs. It fragments your attention and makes it harder to regain deep focus. Don't keep your phone within arm's reach; put it in another room or on silent."] }
         ]
     }
 ];

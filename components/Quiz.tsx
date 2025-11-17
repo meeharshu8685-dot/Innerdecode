@@ -49,21 +49,32 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
     }
   };
 
-  const handleNext = () => {
+  const getNextQuestionId = (): string | undefined => {
     const currentQuestion = questions[currentQuestionId];
-    const currentAnswers = answers[currentQuestionId] || [];
-    if (currentAnswers.length === 0) return;
-    
-    let nextId: string | undefined;
+    const currentSelectedIndices = answers[currentQuestionId] || [];
 
-    if (currentQuestion.multiple) {
-        nextId = currentQuestion.defaultNextQuestion;
-    } else {
-        const selectedOptionIndex = currentAnswers[0];
-        const selectedOption = currentQuestion.options[selectedOptionIndex];
-        nextId = selectedOption.nextQuestion || currentQuestion.defaultNextQuestion;
+    if (currentSelectedIndices.length === 0) {
+      return undefined;
     }
 
+    if (currentQuestion.multiple) {
+      // For multiple choice, check if any selected option has a specific nextQuestion
+      for (const optionIndex of currentSelectedIndices) {
+        const selectedOption = currentQuestion.options[optionIndex];
+        if (selectedOption.nextQuestion) {
+          return selectedOption.nextQuestion; // Use the first one found
+        }
+      }
+      return currentQuestion.defaultNextQuestion;
+    } else {
+      const selectedOptionIndex = currentSelectedIndices[0];
+      const selectedOption = currentQuestion.options[selectedOptionIndex];
+      return selectedOption.nextQuestion || currentQuestion.defaultNextQuestion;
+    }
+  };
+
+  const handleNext = () => {
+    const nextId = getNextQuestionId();
     if (nextId && questions[nextId]) {
       setQuestionHistory(prev => [...prev, currentQuestionId]);
       setCurrentQuestionId(nextId);
@@ -94,17 +105,8 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
   
   const currentAnswers = answers[currentQuestionId] || [];
   const hasAnsweredCurrent = currentAnswers.length > 0;
-
-  let nextQuestionId: string | undefined;
-  if (hasAnsweredCurrent) {
-      if (currentQuestion.multiple) {
-          nextQuestionId = currentQuestion.defaultNextQuestion;
-      } else {
-          const selectedOptionIndex = currentAnswers[0];
-          const selectedOption = currentQuestion.options[selectedOptionIndex];
-          nextQuestionId = selectedOption?.nextQuestion || currentQuestion.defaultNextQuestion;
-      }
-  }
+  
+  const nextQuestionId = getNextQuestionId();
   const isLastQuestion = hasAnsweredCurrent && !nextQuestionId;
 
   return (
