@@ -10,7 +10,7 @@ const BehaviorTestPage: React.FC = () => {
 
   const handleComplete = (answers: Answer[]) => {
     const resultId = calculateResult(answers, behaviorTestQuestions);
-    navigate(`/test-result/behavior/${resultId}`);
+    navigate(`/test-result/behavior/${resultId}`, { state: { answers } });
   };
 
   // FIX: Convert the array of questions to a map format expected by the Quiz component.

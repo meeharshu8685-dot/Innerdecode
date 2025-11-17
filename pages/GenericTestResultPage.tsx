@@ -1,27 +1,69 @@
 import React from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
-import { thinkingStyleResults, emotionalPatternResults, behaviorResults } from '../services/quizData';
-import { TestType } from '../types';
+import { useParams, Navigate, Link, useLocation } from 'react-router-dom';
+import { 
+  thinkingStyleResults, 
+  emotionalPatternResults, 
+  behaviorResults,
+  thinkingStyleTestQuestions,
+  emotionalPatternTestQuestions,
+  behaviorTestQuestions
+} from '../services/quizData';
+import { TestType, Answer, QuizQuestion } from '../types';
+import Accordion from '../components/Accordion';
 
 const testDataMap = {
-  thinking: { data: thinkingStyleResults, title: "Thinking Style" },
-  emotional: { data: emotionalPatternResults, title: "Emotional Pattern" },
-  behavior: { data: behaviorResults, title: "Behavioral Nature" },
+  thinking: { data: thinkingStyleResults, title: "Thinking Style", questions: thinkingStyleTestQuestions },
+  emotional: { data: emotionalPatternResults, title: "Emotional Pattern", questions: emotionalPatternTestQuestions },
+  behavior: { data: behaviorResults, title: "Behavioral Nature", questions: behaviorTestQuestions },
 };
 
 const GenericTestResultPage: React.FC = () => {
   const { testType, resultId } = useParams<{ testType: TestType; resultId: string }>();
+  const location = useLocation();
+  const answers: Answer[] | undefined = location.state?.answers;
 
   if (!testType || !resultId || !testDataMap[testType]) {
     return <Navigate to="/" replace />;
   }
 
-  const { data, title } = testDataMap[testType];
+  const { data, title, questions } = testDataMap[testType];
   const result = data.find(r => r.id === resultId);
 
   if (!result) {
     return <Navigate to="/" replace />;
   }
+
+  const getContributingAnswers = () => {
+    if (!answers || !resultId) return {};
+
+    const questionsMap = questions.reduce((acc, q) => {
+        acc[q.id] = q;
+        return acc;
+    }, {} as { [id: string]: QuizQuestion });
+
+    const contributing = answers.filter(answer => {
+      const question = questionsMap[answer.questionId];
+      if (question) {
+        const option = question.options[answer.optionIndex];
+        return option?.scores[resultId] > 0;
+      }
+      return false;
+    });
+
+    return contributing.reduce((acc, answer) => {
+      const questionId = answer.questionId;
+      if (!acc[questionId]) {
+        acc[questionId] = {
+          questionText: questionsMap[questionId].text,
+          options: []
+        };
+      }
+      acc[questionId].options.push(questionsMap[questionId].options[answer.optionIndex].text);
+      return acc;
+    }, {} as { [key: string]: { questionText: string; options: string[] } });
+  };
+  
+  const contributingAnswersMap = getContributingAnswers();
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -44,6 +86,24 @@ const GenericTestResultPage: React.FC = () => {
                 {result.challenges.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
         </div>
+        
+        {answers && Object.keys(contributingAnswersMap).length > 0 && (
+          <Accordion title="How We Found This Result">
+            <div className="space-y-4 text-text-secondary dark:text-slate-300">
+              <p>Your result is based on answers that point towards the <strong>{result.name}</strong> style. Here are the key choices you made:</p>
+              {Object.values(contributingAnswersMap).map((item, index) => (
+                <div key={index} className="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                  <p className="font-semibold text-text-primary dark:text-slate-200">When asked: "{item.questionText}"</p>
+                  <p className="mt-1">You selected:</p>
+                  <ul className="list-disc list-inside ml-4">
+                    {item.options.map((opt, i) => <li key={i}>{opt}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </Accordion>
+        )}
+
         <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-md">
             <h2 className="text-2xl font-semibold text-text-primary dark:text-slate-200 mb-4">Tips for Balance & Growth</h2>
             <ul className="list-disc list-inside space-y-2 text-text-secondary dark:text-slate-300 text-lg">

@@ -12,7 +12,7 @@ const ProblemTestPage: React.FC = () => {
     // Convert the map of questions to an array for the calculation service
     const allQuestionsArray = Object.values(problemTestQuestionsMap);
     const resultPatternId = calculateResult(answers, allQuestionsArray);
-    navigate(`/problem-test/result/${resultPatternId}`);
+    navigate(`/problem-test/result/${resultPatternId}`, { state: { answers } });
   };
 
   return (

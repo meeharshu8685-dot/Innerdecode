@@ -1,17 +1,48 @@
 import React, { useState } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
-import { problemPatterns } from '../services/quizData';
+import { useParams, Navigate, useLocation } from 'react-router-dom';
+import { problemPatterns, problemTestQuestionsMap } from '../services/quizData';
 import Accordion from '../components/Accordion';
 import { ICONS } from '../constants';
+import { Answer } from '../types';
 
 const PatternResultPage: React.FC = () => {
   const { patternId } = useParams<{ patternId: string }>();
+  const location = useLocation();
+  const answers: Answer[] | undefined = location.state?.answers;
   const pattern = problemPatterns.find(p => p.id === patternId);
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
 
   if (!pattern) {
     return <Navigate to="/problem-test" replace />;
   }
+
+  const getContributingAnswers = () => {
+    if (!answers || !patternId) return {};
+
+    const contributing = answers.filter(answer => {
+      const question = problemTestQuestionsMap[answer.questionId];
+      if (question) {
+        const option = question.options[answer.optionIndex];
+        return option?.scores[patternId] > 0;
+      }
+      return false;
+    });
+
+    // Group by question
+    return contributing.reduce((acc, answer) => {
+      const questionId = answer.questionId;
+      if (!acc[questionId]) {
+        acc[questionId] = {
+          questionText: problemTestQuestionsMap[questionId].text,
+          options: []
+        };
+      }
+      acc[questionId].options.push(problemTestQuestionsMap[questionId].options[answer.optionIndex].text);
+      return acc;
+    }, {} as { [key: string]: { questionText: string; options: string[] } });
+  };
+  
+  const contributingAnswersMap = getContributingAnswers();
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -29,6 +60,24 @@ const PatternResultPage: React.FC = () => {
                 {pattern.immediateReset.steps.map((step, i) => <li key={i}>{step}</li>)}
             </ul>
         </div>
+        
+        {/* How we found this pattern */}
+        {answers && Object.keys(contributingAnswersMap).length > 0 && (
+          <Accordion title="How We Found This Pattern">
+            <div className="space-y-4 text-text-secondary dark:text-slate-300">
+              <p>Your result is based on answers that point towards the <strong>{pattern.name}</strong> pattern. Here are the key choices you made:</p>
+              {Object.values(contributingAnswersMap).map((item, index) => (
+                <div key={index} className="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                  <p className="font-semibold text-text-primary dark:text-slate-200">When asked: "{item.questionText}"</p>
+                  <p className="mt-1">You selected:</p>
+                  <ul className="list-disc list-inside ml-4">
+                    {item.options.map((opt, i) => <li key={i}>{opt}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </Accordion>
+        )}
 
         {/* Sections */}
         {pattern.sections.map((section, index) => (
