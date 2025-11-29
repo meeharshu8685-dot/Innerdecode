@@ -8,10 +8,15 @@
   <script>
     // Theme script to prevent flash
     // Default to light theme
-    if (localStorage.theme === 'dark') {
-      document.documentElement.classList.add('dark')
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.remove('dark');
+      // Ensure light theme is set if no theme is saved
+      if (!savedTheme) {
+        localStorage.setItem('theme', 'light');
+      }
     }
 
     tailwind.config = {

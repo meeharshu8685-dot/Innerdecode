@@ -13,6 +13,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
+      // Only use dark if explicitly saved as 'dark', otherwise default to light
       if (savedTheme === 'dark') {
         return 'dark';
       }
