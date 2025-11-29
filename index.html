@@ -7,11 +7,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Theme script to prevent flash
-    // Default to dark theme
-    if (localStorage.theme === 'light') {
-      document.documentElement.classList.remove('dark')
-    } else {
+    // Default to light theme
+    if (localStorage.theme === 'dark') {
       document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
     }
 
     tailwind.config = {
