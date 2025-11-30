@@ -7,13 +7,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Theme script to prevent flash
-    // Default to light theme
+    // White theme is primary - default to light theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
-      // Ensure light theme is set if no theme is saved
+      // Ensure light theme (white theme) is set as primary if no theme is saved
       if (!savedTheme) {
         localStorage.setItem('theme', 'light');
       }

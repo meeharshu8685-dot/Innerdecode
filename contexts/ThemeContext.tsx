@@ -11,14 +11,15 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
+    // White/light theme is primary - always default to light
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
-      // Only use dark if explicitly saved as 'dark', otherwise default to light
+      // Only use dark if explicitly saved as 'dark', otherwise default to light (primary)
       if (savedTheme === 'dark') {
         return 'dark';
       }
     }
-    // Default to light
+    // Default to light (white theme is primary)
     return 'light';
   });
 
