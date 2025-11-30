@@ -41,19 +41,19 @@ const HomePage: React.FC = () => {
             </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card>
+            <Card className="bg-calm-blue-light dark:bg-zinc-900/60">
                 <h3 className="text-xl font-semibold mb-2 text-text-primary dark:text-gray-200">Identify Your Problem</h3>
                 <p className="text-text-secondary dark:text-gray-400">Pinpoint the specific type of challenge you're facing right now.</p>
             </Card>
-            <Card>
+            <Card className="bg-calm-green/30 dark:bg-zinc-900/60">
                 <h3 className="text-xl font-semibold mb-2 text-text-primary dark:text-gray-200">See Your Patterns</h3>
                 <p className="text-text-secondary dark:text-gray-400">Understand how your thinking and emotional habits influence your stress.</p>
             </Card>
-            <Card>
+            <Card className="bg-calm-lavender dark:bg-zinc-900/60">
                 <h3 className="text-xl font-semibold mb-2 text-text-primary dark:text-gray-200">Get Real Solutions</h3>
                 <p className="text-text-secondary dark:text-gray-400">Receive clear, actionable steps you can take immediately to feel better.</p>
             </Card>
-            <Card>
+            <Card className="bg-calm-blue-light/50 dark:bg-zinc-900/60">
                 <h3 className="text-xl font-semibold mb-2 text-text-primary dark:text-gray-200">Gain Self-Awareness</h3>
                 <p className="text-text-secondary dark:text-gray-400">Learn about yourself through simple, insightful tests and reflections.</p>
             </Card>
