@@ -110,14 +110,14 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
   const isLastQuestion = hasAnsweredCurrent && !nextQuestionId;
 
   return (
-    <div className="max-w-2xl mx-auto bg-white dark:bg-zinc-900 p-6 sm:p-8 rounded-2xl shadow-lg">
+    <div className="max-w-2xl mx-auto bg-gradient-to-br from-calm-blue-light/80 via-white to-calm-lavender/60 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-800 p-6 sm:p-8 rounded-3xl shadow-xl border border-calm-blue/20 dark:border-zinc-800">
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2 text-sm text-text-secondary dark:text-gray-400">
           <span>Question {questionHistory.length + 1}</span>
         </div>
       </div>
       <div className="text-center">
-        <div className="mb-8 min-h-[4.5rem] flex flex-col justify-center">
+        <div className="mb-8 min-h-[4.5rem] flex flex-col justify-center bg-white/70 dark:bg-zinc-900/60 px-4 py-3 rounded-2xl border border-white/40 dark:border-zinc-800 shadow-inner">
             <h2 className="text-2xl md:text-3xl font-bold text-text-primary dark:text-gray-200">{currentQuestion.text}</h2>
             {currentQuestion.multiple && (
                 <p className="text-md text-text-secondary dark:text-gray-400 mt-2">(Select all that apply)</p>
@@ -133,7 +133,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, startQuestionId, onComplete }) =
                     className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-calm-blue focus:ring-offset-2 ${
                         isSelected 
                         ? 'border-calm-blue bg-calm-blue-light dark:bg-zinc-800' 
-                        : 'border-slate-200 dark:border-zinc-700 hover:border-calm-blue hover:bg-calm-blue-light/50 dark:hover:bg-zinc-800/50'
+                        : 'border-slate-200 bg-white/80 dark:bg-zinc-900 dark:border-zinc-700 hover:border-calm-blue hover:bg-calm-blue-light/40 dark:hover:bg-zinc-800/50'
                     }`}
                 >
                     <span className="text-lg font-medium text-text-primary dark:text-gray-200">{option.text}</span>
