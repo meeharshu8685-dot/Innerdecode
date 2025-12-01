@@ -105,7 +105,10 @@ const HomePage: React.FC = () => {
           <p className="max-w-2xl mx-auto mt-4 text-text-secondary dark:text-gray-400 mb-8">
             Everyone feels lost sometimes. You don't need to know everything—you only need the right clarity. Start now.
           </p>
-          <Link to="/problem-test" className="px-10 py-4 bg-gradient-to-r from-calm-blue to-calm-blue-dark text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all text-lg">
+          <Link
+            to="/problem-test"
+            className="inline-flex w-full max-w-xs sm:w-auto sm:max-w-none justify-center px-8 py-4 bg-gradient-to-r from-calm-blue to-calm-blue-dark text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all text-lg"
+          >
             Start Understanding Yourself
           </Link>
       </section>
