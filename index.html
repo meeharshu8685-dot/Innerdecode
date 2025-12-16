@@ -25,20 +25,35 @@
         extend: {
           colors: {
             'calm-blue': '#60A5FA', // blue-400
-            'calm-blue-dark': '#3B82F6', // blue-500
+            'calm-blue-dark': '#2563EB', // blue-600 - slightly darker for better contrast
             'calm-blue-light': '#EFF6FF', // blue-50
             'calm-green': '#A7F3D0', // emerald-200
-            'calm-green-dark': '#34D399', // emerald-400
-            'calm-lavender': '#F5F3FF', // violet-100
-            'light-blue': '#E3F2FD', // light blue
-            'light-olive-green': '#F1F8E9', // light olive green
-            'light-cream': '#FFFEF7', // light cream
-            'light-violet': '#F3E5F5', // light violet
-            'text-primary': '#1E293B', // slate-800
-            'text-secondary': '#64748B', // slate-500
+            'calm-green-dark': '#059669', // emerald-600
+            'calm-lavender': '#F8FAFC', // slate-50 - very subtle cool white
+            'light-blue': '#E0F2FE', // sky-100
+            'light-olive-green': '#ECFCCB', // lime-100
+            'light-cream': '#FAFAF9', // stone-50
+            'light-violet': '#F3E8FF', // purple-100
+            'text-primary': '#0F172A', // slate-900 - sharper text
+            'text-secondary': '#475569', // slate-600
+            'premium-gold': '#D4AF37', // Gold for premium accents
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out',
+            'slide-up': 'slideUp 0.5s ease-out',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
           },
         },
       },

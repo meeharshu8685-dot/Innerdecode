@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import LoadingSpinner from './components/LoadingSpinner';
+import SplashScreen from './components/SplashScreen';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -17,6 +18,12 @@ const BehaviorTestPage = lazy(() => import('./pages/BehaviorTestPage'));
 const GenericTestResultPage = lazy(() => import('./pages/GenericTestResultPage'));
 
 const App: React.FC = () => {
+  const [showSplash, setShowSplash] = React.useState(true);
+
+  if (showSplash) {
+    return <SplashScreen onComplete={() => setShowSplash(false)} />;
+  }
+
   return (
     <ThemeProvider>
       <HashRouter>
