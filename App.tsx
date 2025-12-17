@@ -8,6 +8,8 @@ import { ThemeProvider } from './contexts/ThemeContext';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsConditionsPage = lazy(() => import('./pages/TermsConditionsPage'));
 const SolutionsLibraryPage = lazy(() => import('./pages/SolutionsLibraryPage'));
 const SolutionDetailPage = lazy(() => import('./pages/SolutionDetailPage'));
 const ProblemTestPage = lazy(() => import('./pages/ProblemTestPage'));
@@ -33,6 +35,8 @@ const App: React.FC = () => {
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms-conditions" element={<TermsConditionsPage />} />
               <Route path="/solutions" element={<SolutionsLibraryPage />} />
               <Route path="/solutions/:solutionId" element={<SolutionDetailPage />} />
               <Route path="/problem-test" element={<ProblemTestPage />} />

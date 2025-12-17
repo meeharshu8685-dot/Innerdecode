@@ -12,8 +12,8 @@ const Footer: React.FC = () => {
           <div className="flex justify-center space-x-6 mb-4">
             <Link to="/about" className="text-sm hover:text-slate-900 dark:hover:text-white transition-colors">About</Link>
             <Link to="/contact" className="text-sm hover:text-slate-900 dark:hover:text-white transition-colors">Contact</Link>
-            <a href="#" className="text-sm hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="text-sm hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Use</a>
+            <Link to="/privacy-policy" className="text-sm hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms-conditions" className="text-sm hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Use</Link>
           </div>
           <p className="text-xs">&copy; {new Date().getFullYear()} Innerdecode. All rights reserved.</p>
           <p className="text-xs mt-2">Made by Harshu with ❤️</p>
