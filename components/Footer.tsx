@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
             <Link to="/terms-conditions" className="text-sm hover:text-slate-900 dark:hover:text-white transition-colors">Terms of Use</Link>
           </div>
           <p className="text-xs">&copy; {new Date().getFullYear()} Innerdecode. All rights reserved.</p>
-          <p className="text-xs mt-2">Made by Harshu with ❤️</p>
+          <p className="text-xs mt-2">Made by <a href="https://iykhrshuu.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 dark:hover:text-white transition-colors">Harshu</a> with ❤️</p>
         </div>
       </div>
     </footer>
